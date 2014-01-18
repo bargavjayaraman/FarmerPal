@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">App</string>
+    <string name="action_settings">title</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="title_activity_farmer_display">Farmer Portal</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="title_activity_market_display">Market Portal</string>
+    <string name="add">Add</string>
+    <string name="title_activity_top_market_display">Top Ranked Results</string>
+    <string name="item">Item</string>
+    <string name="price">Price</string>
+    <string name="ok">OK</string>
+    <string name="defaultPrice">0.0</string>
+    <string name="title_activity_add_item">Add Item</string>
+
+</resources>
