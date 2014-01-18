@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -56,7 +58,6 @@ public class MarketDisplayActivity extends ListActivity {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		arrayAdapter = new ArrayAdapter<String>(
@@ -65,6 +66,18 @@ public class MarketDisplayActivity extends ListActivity {
 				allitems );
 
 		lv.setAdapter(arrayAdapter);
+		lv.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+		    @Override
+		    public boolean onItemLongClick(AdapterView<?> parent, View view,
+		            int position, long arg3) {
+		    	allitems.remove(position);//where arg2 is position of item you click
+		    	arrayAdapter.notifyDataSetChanged();
+
+		        return false;
+		    }
+
+		});
 	}
 
 	public void populateBuyList(View view)
@@ -91,7 +104,6 @@ public class MarketDisplayActivity extends ListActivity {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		arrayAdapter = new ArrayAdapter<String>(
@@ -127,7 +139,6 @@ public class MarketDisplayActivity extends ListActivity {
 				}
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		arrayAdapter = new ArrayAdapter<String>(
