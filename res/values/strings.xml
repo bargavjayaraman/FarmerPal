@@ -15,6 +15,7 @@
     <string name="item">Item</string>
     <string name="price">Price</string>
     <string name="ok">OK</string>
+    <string name="sync">Sync</string>
     <string name="defaultPrice">0.0</string>
     <string name="title_activity_add_item">Add Item</string>
 

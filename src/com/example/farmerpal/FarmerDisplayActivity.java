@@ -45,7 +45,6 @@ public class FarmerDisplayActivity extends ListActivity {
 			sellItems.add("Mustard");
 			sellItems.add("Jute");
 
-
 		arrayAdapter = new ArrayAdapter<String>(
 				this, 
 				android.R.layout.simple_list_item_1,
@@ -124,7 +123,6 @@ public class FarmerDisplayActivity extends ListActivity {
 	public ArrayList<String> calculateCost(String item, String type){
 		File f = new File(Environment.getExternalStorageDirectory(),"marketdata.txt");
 		File farmerdata = new File(Environment.getExternalStorageDirectory(),"mydata.txt");
-
 
 		try {
 			//Farmer Data:lat/nlang/n
