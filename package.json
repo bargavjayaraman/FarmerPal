@@ -1,0 +1,36 @@
+{
+    "name": "FarmerPal",
+    "description": "Android Application helping farmers locate most cost effective market nearby. Making local markets global.",
+    "author": {
+        "name": "Sanchit Aggarwal",
+        "email": "sanchitagarwal108@gmail.com"
+    },
+    "contributors": [
+        {
+             "name": "Bargav Jayaraman",
+             "email": "bargav.jayaraman@gmail.com"
+        },
+        {
+            "name": "Romil Bansal",
+            "email": "romilbansal@gmail.com"
+        },
+        {
+            "name": "Santosh Kosgi",
+            "email":"santosh.kosgi@research.iiit.ac.in"
+        },
+        {
+            "name": "Sanchit Aggarwal",
+            "email": "sanchitagarwal108@gmail.com"
+        }
+    ],
+    "keywords": [
+        "Android SDK"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bargavjayaraman/FarmerPal.git"
+    },
+    "version": "1.0.0",
+    "private": true
+    }
+}
