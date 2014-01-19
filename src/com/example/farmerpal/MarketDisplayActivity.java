@@ -6,16 +6,18 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.http.client.ClientProtocolException;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.protocol.HTTP;
+import org.json.JSONObject;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -23,6 +25,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -173,43 +176,47 @@ public class MarketDisplayActivity extends ListActivity {
 
 	public void sync(View view)
 	{
+		String id="";
 		if(isConn())
 		{
+			File f = new File(Environment.getExternalStorageDirectory(),"mydata.txt");
 			try {
-				File f = new File(Environment.getExternalStorageDirectory(),"marketdata.txt");
 				BufferedReader br = new BufferedReader(new FileReader(f));
+				br.readLine();
+				br.readLine();
+				id = br.readLine();
+				br.close();
+
+				f = new File(Environment.getExternalStorageDirectory(),"marketdata.txt");
+				br = new BufferedReader(new FileReader(f));
 				String line = "";
 				while((line = br.readLine())!=null){
 					String[] items = line.split(",");
 
 					HttpClient client = new DefaultHttpClient();
-					HttpPost post = new HttpPost("https://docs.google.com/forms/d/18yM0nrhyd0bXu4usrO6fvtrSVDrA7njoTm5NF7aYAg8/formResponse");
-
-					List<BasicNameValuePair> MarketData = new ArrayList<BasicNameValuePair>();
-					MarketData.add(new BasicNameValuePair("entry.1124819832", items[0]));
-					MarketData.add(new BasicNameValuePair("entry.909167110", items[1]));
-					MarketData.add(new BasicNameValuePair("entry.1747531464", items[2]));
-					MarketData.add(new BasicNameValuePair("entry.2041995474", items[3]));
-					MarketData.add(new BasicNameValuePair("entry.688218270", items[4]));
-					MarketData.add(new BasicNameValuePair("entry.1921593393", items[5]));
-					MarketData.add(new BasicNameValuePair("entry.1938252992", items[6]));
+					HttpConnectionParams.setConnectionTimeout(client.getParams(), 10000); //Timeout Limit
+					HttpResponse response;
+					JSONObject json = new JSONObject();
 
 					try {
-						post.setEntity(new UrlEncodedFormEntity(MarketData));
-					} catch (UnsupportedEncodingException e) {
-						// Auto-generated catch block
-						//Log.e("Intrnet", "Not Connected", e);
-						e.printStackTrace();
-					}
-					try {
-						client.execute(post);
-					} catch (ClientProtocolException e) {
-						// Auto-generated catch block
-						//Log.e("YOUR_TAG", "client protocol exception", e);
-						e.printStackTrace();
-					} catch (IOException e) {
-						// Auto-generated catch block
-						//Log.e("YOUR_TAG", "io exception", e);
+						HttpPost post = new HttpPost("http://10.2.40.55:5000/insert/");
+						json.put("item", items[0]);
+						json.put("lat", items[1]);
+						json.put("long", items[2]);
+						json.put("price", items[3]);
+						json.put("desc", items[4]);
+						json.put("bs", items[5]);
+						json.put("id", items[6]);
+						StringEntity se = new StringEntity( json.toString());  
+						se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+						post.setEntity(se);
+						response = client.execute(post);
+
+						if(response!=null){
+							InputStream in = response.getEntity().getContent(); //Get the data in the entity
+						}
+
+					} catch(Exception e) {
 						e.printStackTrace();
 					}
 				}

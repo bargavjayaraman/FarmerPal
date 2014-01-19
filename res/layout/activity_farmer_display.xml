@@ -27,6 +27,12 @@
         		android:onClick="populateSellList" />
 		</TableRow>
     </TableLayout>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sync"
+        android:onClick="sync" />
     <ListView android:id="@android:id/list"
 		android:layout_width="fill_parent"
 		android:layout_height="fill_parent"
