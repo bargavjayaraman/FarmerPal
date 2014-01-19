@@ -143,7 +143,7 @@ public class FarmerDisplayActivity extends ListActivity {
 		         JSONArray arr = json.getJSONArray("items");
 		         bw1 = new BufferedWriter(new FileWriter(marketdata));
 		         for(int i =1; i<arr.length()-1;i++){
-		        	 String tmp = arr.getJSONObject(i).get("item").toString() + arr.getJSONObject(i).get("lat") + arr.getJSONObject(i).get("long") + arr.getJSONObject(i).get("price") + arr.getJSONObject(i).get("desc") + arr.getJSONObject(i).get("bs") + arr.getJSONObject(i).get("id") + "\n";
+		        	 String tmp = arr.getJSONObject(i).get("item").toString() + ","+ arr.getJSONObject(i).get("lat")+ "," + arr.getJSONObject(i).get("long")+ "," + arr.getJSONObject(i).get("price")+ "," + arr.getJSONObject(i).get("desc")+ "," + arr.getJSONObject(i).get("bs")+ "," + arr.getJSONObject(i).get("id") + "\n";
 		        	 bw1.append(tmp);
 		         }
 //		         System.out.println(arr.getJSONObject(0));
